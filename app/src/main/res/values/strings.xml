@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">@string/my_flappy_bird</string>
+    <string name="success">Success</string>
+    <string name="settings">Settings</string>
+    <string name="sound">Sound</string>
+    <string name="my_flappy_bird">Wukong Flying</string>
+    <string name="game_over">Game Over</string>
+    <string name="speed">Speed</string>
+    <string name="dialog_score">Score: %.0f</string>
+    <string name="dialog_highest_score">Highest Score: %.0f</string>
+    <string name="player">Player</string>
+    <string name="play_again">Play again</string>
+    <string name="exit">Exit</string>
+    <string name="continue_text">Continue</string>
+    <string name="score_text">Score: %.0f</string>
+    <string name="normal">Normal</string>
+    <string name="level_medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="very_hard">Very hard</string>
+    <string name="play">Play</string>
+    <string name="ads">Ads</string>
+    <string name="this_game_can_have_ads">This game may be have ads…</string>
+    <string name="loadingText">Loading… </string>
+</resources>

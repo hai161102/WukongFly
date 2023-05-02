@@ -1,0 +1,114 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.haiprj.haigame.wukongfly'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.haiprj.games.wukongfly"
+        minSdk 24
+        targetSdk 33
+        versionCode 101
+        versionName "1.0.1"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        def formattedDate = new Date().format('hh.mm.MM.dd.yyyy')
+        archivesBaseName = "Base_V${versionName}_${formattedDate}"
+    }
+
+    flavorDimensions "dimen"
+    productFlavors {
+        vDevelop_ {
+            applicationId "com.example.develop.test"
+            buildConfigField "boolean", "TEST_AD", "false"
+            buildConfigField "boolean", "PURCHASED", "false"
+            dimension "dimen"
+            versionName "develop"
+
+
+            def addConstantTo = { target, constantName, constantValue ->
+                target.manifestPlaceholders += [(constantName): constantValue]
+                target.buildConfigField "String", "${constantName}", "\"${constantValue}\""
+            }
+            addConstantTo(owner, "APP_ID", "ca-app-pub-3940256099942544~3347511713")
+
+            addConstantTo(owner, "inter_splash", "ca-app-pub-3940256099942544/1033173712")
+            addConstantTo(owner, "inter_exit", "ca-app-pub-3940256099942544/1033173712")
+            addConstantTo(owner, "banner_main", "ca-app-pub-3940256099942544/6300978111")
+            addConstantTo(owner, "banner_game", "ca-app-pub-3940256099942544/6300978111")
+            addConstantTo(owner, "reward_continue", "ca-app-pub-3940256099942544/5224354917")
+            addConstantTo(owner, "open_app", "ca-app-pub-3940256099942544/3419835294")
+
+        }
+
+        vOfficial_ {
+            applicationId "com.haiprj.games.wukongfly"
+
+            buildConfigField "boolean", "TEST_AD", "false"
+            buildConfigField "boolean", "PURCHASED", "false"
+            dimension "dimen"
+
+            def addConstantTo = { target, constantName, constantValue ->
+                target.manifestPlaceholders += [(constantName): constantValue]
+                target.buildConfigField "String", "${constantName}", "\"${constantValue}\""
+            }
+            addConstantTo(owner, "APP_ID", "ca-app-pub-1903284124203626~6433681215")
+
+            addConstantTo(owner, "inter_splash", "ca-app-pub-1903284124203626/7141679101")
+            addConstantTo(owner, "inter_exit", "ca-app-pub-1903284124203626/8578883850")
+            addConstantTo(owner, "banner_main", "ca-app-pub-1903284124203626/2080924110")
+            addConstantTo(owner, "banner_game", "ca-app-pub-1903284124203626/1031566321")
+            addConstantTo(owner, "reward_continue", "ca-app-pub-1903284124203626/8742535386")
+            addConstantTo(owner, "open_app", "ca-app-pub-1903284124203626/4639638849")
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('key/release.jks')
+            storePassword 'com.haiprj.games.wukongfly'
+            keyAlias 'release'
+            keyPassword 'com.haiprj.games.wukongfly'
+        }
+    }
+
+    buildTypes {
+        release {
+            //signingConfigs signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'com.pnikosis:materialish-progress:1.7'
+    implementation 'com.github.hai161102:AndroidAppLib:1.0.6'
+    implementation 'com.google.android.gms:play-services-ads:22.0.0'
+    implementation "com.google.android.gms:play-services-games-v2:17.0.0"
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
